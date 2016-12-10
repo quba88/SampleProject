@@ -8,8 +8,12 @@
 
 import UIKit
 
-class CrateAccountViewController: UIViewController {
+class CrateAccountViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var loginTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var rePasswordTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,16 +24,43 @@ class CrateAccountViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func subbmitButtonAction(_ sender: UIButton) {
+        
+        guard self.loginTextField.text!.characters.count != 0,
+              self.passwordTextField.text!.characters.count  != 0 ,
+               self.rePasswordTextField.text!.characters.count  != 0 else {
+                let infoAlert = UIAlertController(title: "EMPTY_TEXT_FIELD_ALLERT_TITLE".localized, message: "EMPTY_TEXT_FIELD_ALLERT_MESSAGE".localized, preferredStyle: .alert)
+                let dissmisAction = UIAlertAction(title: "EMPTY_TEXT_FIELD_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: { (action) in
+                    infoAlert.dismiss(animated: true, completion: nil)
+                })
+                infoAlert.addAction(dissmisAction)
+                
+                self.navigationController?.present(infoAlert, animated: true, completion: nil)
+                
+            return
+        }
+        
+        
+        
     }
-    */
+
+// MARK: - TextField delegate
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        if textField == self.loginTextField{
+        self.passwordTextField.becomeFirstResponder()
+        }else
+            if textField == self.passwordTextField{
+        self.rePasswordTextField.becomeFirstResponder()
+        }
+        
+        
+        return true;
+    }
+    
 
 }
