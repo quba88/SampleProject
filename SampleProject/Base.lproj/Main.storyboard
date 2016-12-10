@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="-676" y="-1063.7181409295354"/>
         </scene>
-        <!--View Controller-->
+        <!--Crate Account View Controller-->
         <scene sceneID="DCx-7Y-RPO">
             <objects>
-                <viewController id="Bs5-M8-AXI" sceneMemberID="viewController">
+                <viewController id="Bs5-M8-AXI" customClass="CrateAccountViewController" customModule="SampleProject" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fNB-sa-zuu"/>
                         <viewControllerLayoutGuide type="bottom" id="wWZ-wG-0Ld"/>
@@ -143,6 +143,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gd2-ea-5da">
                                 <rect key="frame" x="131" y="347" width="58" height="30"/>
                                 <state key="normal" title="Subbmit"/>
+                                <connections>
+                                    <action selector="subbmitButtonAction:" destination="Bs5-M8-AXI" eventType="touchUpInside" id="vrc-TJ-s9f"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -170,6 +173,11 @@
                             <constraint firstItem="34h-Jp-Axp" firstAttribute="top" secondItem="fwo-lS-BhD" secondAttribute="bottom" constant="8" symbolic="YES" id="wol-7J-Fow"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loginTextField" destination="fwo-lS-BhD" id="uyr-hX-Y0W"/>
+                        <outlet property="passwordTextField" destination="34h-Jp-Axp" id="mx7-KV-Cse"/>
+                        <outlet property="rePasswordTextField" destination="jcf-Va-SHI" id="dNx-IB-9fr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4x-fL-Nqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
