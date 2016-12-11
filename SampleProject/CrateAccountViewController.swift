@@ -27,9 +27,11 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func subbmitButtonAction(_ sender: UIButton) {
         
-        guard self.loginTextField.text!.characters.count != 0,
-              self.passwordTextField.text!.characters.count  != 0 ,
-               self.rePasswordTextField.text!.characters.count  != 0 else {
+     /// validation
+        
+        guard !self.loginTextField.text!.isEmpty,
+            !self.passwordTextField.text!.isEmpty,
+            !self.rePasswordTextField.text!.isEmpty else {
                 let infoAlert = UIAlertController(title: "EMPTY_TEXT_FIELD_ALLERT_TITLE".localized, message: "EMPTY_TEXT_FIELD_ALLERT_MESSAGE".localized, preferredStyle: .alert)
                 let dissmisAction = UIAlertAction(title: "EMPTY_TEXT_FIELD_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: { (action) in
                     infoAlert.dismiss(animated: true, completion: nil)
@@ -38,9 +40,23 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
                 
                 self.navigationController?.present(infoAlert, animated: true, completion: nil)
                 
+                return
+        }
+        
+        guard self.passwordTextField.text! == self.rePasswordTextField.text! else{
+        
+            let infoAlert = UIAlertController(title: "PASSWORD_NOT_MATCH_ALLERT_TITLE".localized, message: "PASSWORD_NOT_MATCH_ALLERT_MESSAGE".localized, preferredStyle: .alert)
+            let dissmisAction = UIAlertAction(title: "PASSWORD_NOT_MATCH_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: { (action) in
+                infoAlert.dismiss(animated: true, completion: nil)
+            })
+            infoAlert.addAction(dissmisAction)
+            
+            self.navigationController?.present(infoAlert, animated: true, completion: nil)
+            
             return
         }
         
+        ///validation success save pasword & login to keychain
         
         
     }
