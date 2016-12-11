@@ -6,6 +6,7 @@
 build/
 DerivedData/
 privateFiles/
+*.entitlements
 ## Various settings
 *.pbxuser
 !default.pbxuser

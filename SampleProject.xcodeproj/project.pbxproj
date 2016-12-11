@@ -17,6 +17,7 @@
 		CE7AF2441DF742AF007F231F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AF2421DF742AF007F231F /* LaunchScreen.storyboard */; };
 		CE7AF24F1DF742AF007F231F /* SampleProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF24E1DF742AF007F231F /* SampleProjectTests.swift */; };
 		CE7AF25A1DF742AF007F231F /* SampleProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF2591DF742AF007F231F /* SampleProjectUITests.swift */; };
+		CE92D47F1DFDA8D800C6F6AD /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */; };
 		CEDFF3DC1DFC933D00A311C8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFF3DB1DFC933D00A311C8 /* Security.framework */; };
 		CEDFF3DE1DFC93C500A311C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3DD1DFC93C500A311C8 /* Constants.swift */; };
 		CEDFF3E31DFC963B00A311C8 /* ClassExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */; };
@@ -66,6 +67,8 @@
 		CE7AF2551DF742AF007F231F /* SampleProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7AF2591DF742AF007F231F /* SampleProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectUITests.swift; sourceTree = "<group>"; };
 		CE7AF25B1DF742AF007F231F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		CE92D4801DFDDCF600C6F6AD /* SampleProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleProject.entitlements; sourceTree = "<group>"; };
 		CEDFF3DB1DFC933D00A311C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CEDFF3DD1DFC93C500A311C8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CEDFF3DF1DFC95C600A311C8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 		CE7AF2381DF742AE007F231F /* SampleProject */ = {
 			isa = PBXGroup;
 			children = (
+				CE92D4801DFDDCF600C6F6AD /* SampleProject.entitlements */,
 				CEED7B871DF74B17008B0AEC /* ViewControllers */,
 				CEED7B881DF74B22008B0AEC /* UI */,
 				CEED7B861DF74B0B008B0AEC /* supportFiles */,
@@ -176,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */,
+				CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */,
 			);
 			name = utilitis;
 			sourceTree = "<group>";
@@ -302,6 +307,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = J48WXZL2X4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					CE7AF2491DF742AF007F231F = {
 						CreatedOnToolsVersion = 8.1;
@@ -501,6 +511,7 @@
 				CEED7B8A1DF74B44008B0AEC /* LoginViewController.swift in Sources */,
 				CE7AF23C1DF742AE007F231F /* MainViewController.swift in Sources */,
 				CE7AF23A1DF742AE007F231F /* AppDelegate.swift in Sources */,
+				CE92D47F1DFDA8D800C6F6AD /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,6 +596,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -636,6 +648,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -667,6 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SampleProject/SampleProject.entitlements;
 				DEVELOPMENT_TEAM = J48WXZL2X4;
 				INFOPLIST_FILE = SampleProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -682,6 +696,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SampleProject/SampleProject.entitlements;
 				DEVELOPMENT_TEAM = J48WXZL2X4;
 				INFOPLIST_FILE = SampleProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

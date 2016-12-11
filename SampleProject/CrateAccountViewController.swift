@@ -51,13 +51,27 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
             })
             infoAlert.addAction(dissmisAction)
             
-            self.navigationController?.present(infoAlert, animated: true, completion: nil)
+            self.navigationController!.present(infoAlert, animated: true, completion: nil)
             
             return
         }
         
-        ///validation success save pasword & login to keychain
-        
+
+        do{
+        try KeychainWrapper.createAccount(login: self.loginTextField.text!, password: self.passwordTextField.text!)
+            
+            // TODO: show success alertView pop VC
+            
+        }
+        catch KeychainWrapperError.exist{
+            // TODO: show error alertView exist
+
+        }
+            
+        catch {
+            // TODO: show error alertView
+        print(error)
+        }
         
     }
 
