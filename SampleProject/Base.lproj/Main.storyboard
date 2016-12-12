@@ -27,12 +27,18 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tSW-ok-ILH" id="mJM-F9-Hfe"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dPu-M1-bJn">
                                 <rect key="frame" x="111" y="269" width="151" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tSW-ok-ILH" id="eMn-sw-Hn9"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login: " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dc0-IC-bwY">
                                 <rect key="frame" x="16" y="235" width="87" height="21"/>
@@ -52,6 +58,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpG-Zw-Dbm">
                                 <rect key="frame" x="115" y="307" width="90" height="30"/>
                                 <state key="normal" title="Log in to app"/>
+                                <connections>
+                                    <action selector="loginUser:" destination="tSW-ok-ILH" eventType="touchUpInside" id="gBe-5p-dc8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MBF-Bf-yFl">
                                 <rect key="frame" x="108" y="345" width="105" height="30"/>
@@ -82,6 +91,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="Zbv-ch-Xvi"/>
                     <connections>
+                        <outlet property="loginTextField" destination="ger-Zg-Es8" id="FaW-85-9ok"/>
+                        <outlet property="passwordTextField" destination="dPu-M1-bJn" id="LcW-66-Rjh"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="sucessLogin" id="JfA-ak-bZA"/>
                     </connections>
                 </viewController>

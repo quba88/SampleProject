@@ -15,19 +15,28 @@ enum KeychainWrapperError:Error {
     case save(String)
     case parse(String)
     case delete(String)
-
+    case fetch(String)
 }
 
 class KeychainWrapper{
 
-    class func createAccount(login:String, password:String) throws{
-
+    
+    
+    private class func createKeychainItem(login:String) -> [String:Any]{
+        
         var keychainItem = [String:Any]()
         keychainItem[kSecClass as String] = kSecClassGenericPassword as String
         keychainItem[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked as String
         keychainItem[kSecAttrAccount as String] = login
         keychainItem[kSecReturnData as String] = kCFBooleanTrue  as Bool
         keychainItem[kSecReturnAttributes as String] = kCFBooleanTrue  as Bool;
+        return keychainItem }
+    
+    
+    
+    class func createAccount(login:String, password:String) throws{
+
+        var keychainItem = KeychainWrapper.createKeychainItem(login: login)
         
         var status = SecItemCopyMatching(keychainItem as CFDictionary, nil)
         
@@ -51,12 +60,7 @@ class KeychainWrapper{
     
     class func deleteAccount(login:String) throws{
     
-        var keychainItem = [String:Any]()
-        keychainItem[kSecClass as String] = kSecClassGenericPassword as String
-        keychainItem[kSecAttrAccessible as String] = kSecAttrAccessibleWhenUnlocked as String
-        keychainItem[kSecAttrAccount as String] = login
-        keychainItem[kSecReturnData as String] = kCFBooleanTrue  as Bool
-        keychainItem[kSecReturnAttributes as String] = kCFBooleanTrue  as Bool;
+       let keychainItem = KeychainWrapper.createKeychainItem(login: login)
         
         var status = SecItemCopyMatching(keychainItem as CFDictionary, nil)
         
@@ -70,4 +74,21 @@ class KeychainWrapper{
         }
     }
     
+    
+    
+    class func validateUserAccess(login:String, password:String) throws -> Bool {
+        
+        let keychainItem = KeychainWrapper.createKeychainItem(login: login)
+        var result:CFTypeRef?
+        let status = SecItemCopyMatching(keychainItem as CFDictionary, &result)
+      
+        guard let keychainDic = result as? [String:Any] else{
+            throw KeychainWrapperError.fetch("get user data error statusCode \(status)")
+        }
+        
+    let passwordData = keychainDic[kSecValueData as String] as! NSData
+        
+        
+        
+    return passwordData.isEqual(to: password.data(using: String.Encoding.utf8)!)}
 }
