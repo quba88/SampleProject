@@ -9,11 +9,12 @@
 import UIKit
 
 class CrateAccountViewController: UIViewController, UITextFieldDelegate {
-
+// MARK: - IBOutletes
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var rePasswordTextField: UITextField!
     
+    // MARK: - VC lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,7 +25,7 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+// MARK: - IBAction
     @IBAction func subbmitButtonAction(_ sender: UIButton) {
         
      /// validation
@@ -32,8 +33,8 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
         guard !self.loginTextField.text!.isEmpty,
             !self.passwordTextField.text!.isEmpty,
             !self.rePasswordTextField.text!.isEmpty else {
-                let infoAlert = UIAlertController(title: "EMPTY_TEXT_FIELD_ALLERT_TITLE".localized, message: "EMPTY_TEXT_FIELD_ALLERT_MESSAGE".localized, preferredStyle: .alert)
-                let dissmisAction = UIAlertAction(title: "EMPTY_TEXT_FIELD_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: { (action) in
+                let infoAlert = UIAlertController(title: "EMPTY_ALLERT_TITLE".localized, message: "EMPTY_ALLERT_MESSAGE".localized, preferredStyle: .alert)
+                let dissmisAction = UIAlertAction(title: "EMPTY_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: { (action) in
                     infoAlert.dismiss(animated: true, completion: nil)
                 })
                 infoAlert.addAction(dissmisAction)
@@ -58,19 +59,45 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
         
 
         do{
+            // ???: automaticly login user
         try KeychainWrapper.createAccount(login: self.loginTextField.text!, password: self.passwordTextField.text!)
             
-            // TODO: show success alertView pop VC
+            let infoAlert = UIAlertController(title: "SUCESS_CREATE_ACCOUNT_ALLERT_TITLE".localized, message: "SUCESS_CREATE_ACCOUNT_ALLERT_MESSAGE".localized, preferredStyle: .alert)
             
+            let dissmisAction = UIAlertAction(title: "SUCESS_CREATE_ACCOUNT_ALLERT_DISMIS_BUTTON".localized, style: .cancel, handler: {  [unowned self] (action) in
+                infoAlert.dismiss(animated: true, completion: nil)
+                self.navigationController!.popViewController(animated: true)
+            })
+            
+            infoAlert.addAction(dissmisAction)
+            self.navigationController!.present(infoAlert, animated: true, completion: nil)
         }
         catch KeychainWrapperError.exist{
-            // TODO: show error alertView exist
-
+            let infoAlert = UIAlertController(title: "ACCOUNT_EXIST_ALLERT_TITLE".localized, message: "ACCOUNT_EXIST_ALLERT_MESSAGE".localized, preferredStyle: .alert)
+            
+            let dissmisAction = UIAlertAction(title: "ACCOUNT_EXIST_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: {  [unowned self] (action) in
+                infoAlert.dismiss(animated: true, completion: nil)
+                self.navigationController!.popViewController(animated: true)
+            })
+            
+            infoAlert.addAction(dissmisAction)
+            self.navigationController!.present(infoAlert, animated: true, completion: nil)
         }
             
         catch {
-            // TODO: show error alertView
-        print(error)
+            
+            let message = String.localizedStringWithFormat( "CREATE_ACCOUNT_ERROR_ALLERT_MESSAGE".localized,  "\(error)")
+            let infoAlert = UIAlertController(title: "CREATE_ACCOUNT_ERROR_ALLERT_TITLE".localized, message: message, preferredStyle: .alert)
+            
+            let dissmisAction = UIAlertAction(title: "CREATE_ACCOUNT_ERROR_ALLERT_DISSMIS_BUTTON_TITLE".localized, style: .cancel, handler: {  [unowned self] (action) in
+                infoAlert.dismiss(animated: true, completion: nil)
+                self.navigationController!.popViewController(animated: true)
+            })
+            
+            infoAlert.addAction(dissmisAction)
+            self.navigationController!.present(infoAlert, animated: true, completion: nil)
+            
+            print(error)
         }
         
     }
