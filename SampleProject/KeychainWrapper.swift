@@ -16,6 +16,8 @@ enum KeychainWrapperError:Error {
     case parse(String)
     case delete(String)
     case fetch(String)
+    case emptyLogin
+    case emptyPassword
 }
 
 class KeychainWrapper{
@@ -34,8 +36,19 @@ class KeychainWrapper{
     
     
     
-    class func createAccount(login:String, password:String) throws{
+    class func createAccount(login:String, password:String) throws -> Bool{
 
+        if login.characters.count == 0{
+        
+        throw KeychainWrapperError.emptyLogin
+        }
+        
+        if password.characters.count == 0{
+            
+            throw KeychainWrapperError.emptyPassword
+        }
+        
+        
         var keychainItem = KeychainWrapper.createKeychainItem(login: login)
         
         var status = SecItemCopyMatching(keychainItem as CFDictionary, nil)
@@ -54,11 +67,13 @@ class KeychainWrapper{
         if status != errSecSuccess{
         throw KeychainWrapperError.save("Save Error status code: \(status)")
         }
+    
+    return true
     }
     
     
     
-    class func deleteAccount(login:String) throws{
+    class func deleteAccount(login:String) throws -> Bool{
     
        let keychainItem = KeychainWrapper.createKeychainItem(login: login)
         
@@ -71,12 +86,27 @@ class KeychainWrapper{
             if status != errSecSuccess{
                 throw KeychainWrapperError.delete("remove account error code: \(status)")
             }
+        return true
         }
+        else{
+        throw KeychainWrapperError.delete("account not exist: \(status)")
+         }
     }
     
     
     
     class func validateUserAccess(login:String, password:String) throws -> Bool {
+        
+        if login.characters.count == 0{
+            
+            throw KeychainWrapperError.emptyLogin
+        }
+        
+        if password.characters.count == 0{
+            
+            throw KeychainWrapperError.emptyPassword
+        }
+        
         
         let keychainItem = KeychainWrapper.createKeychainItem(login: login)
         var result:CFTypeRef?

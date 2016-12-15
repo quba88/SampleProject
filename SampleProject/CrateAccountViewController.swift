@@ -60,7 +60,7 @@ class CrateAccountViewController: UIViewController, UITextFieldDelegate {
 
         do{
             // ???: automaticly login user
-        try KeychainWrapper.createAccount(login: self.loginTextField.text!, password: self.passwordTextField.text!)
+     let _ = try KeychainWrapper.createAccount(login: self.loginTextField.text!, password: self.passwordTextField.text!)
             
             let infoAlert = UIAlertController(title: "SUCESS_CREATE_ACCOUNT_ALLERT_TITLE".localized, message: "SUCESS_CREATE_ACCOUNT_ALLERT_MESSAGE".localized, preferredStyle: .alert)
             

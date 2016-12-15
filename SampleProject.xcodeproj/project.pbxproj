@@ -22,6 +22,7 @@
 		CEDFF3DE1DFC93C500A311C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3DD1DFC93C500A311C8 /* Constants.swift */; };
 		CEDFF3E31DFC963B00A311C8 /* ClassExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */; };
 		CEDFF3E61DFC973F00A311C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFF3E81DFC973F00A311C8 /* Localizable.strings */; };
+		CEE0F5E11E032B3B00F3991D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */; };
 		CEED7B831DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
 		CEED7B841DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
 		CEED7B851DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
@@ -520,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7AF24F1DF742AF007F231F /* SampleProjectTests.swift in Sources */,
+				CEE0F5E11E032B3B00F3991D /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
