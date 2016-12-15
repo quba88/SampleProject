@@ -17,6 +17,12 @@
 		CE7AF2441DF742AF007F231F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AF2421DF742AF007F231F /* LaunchScreen.storyboard */; };
 		CE7AF24F1DF742AF007F231F /* SampleProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF24E1DF742AF007F231F /* SampleProjectTests.swift */; };
 		CE7AF25A1DF742AF007F231F /* SampleProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF2591DF742AF007F231F /* SampleProjectUITests.swift */; };
+		CE92D47F1DFDA8D800C6F6AD /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */; };
+		CEDFF3DC1DFC933D00A311C8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDFF3DB1DFC933D00A311C8 /* Security.framework */; };
+		CEDFF3DE1DFC93C500A311C8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3DD1DFC93C500A311C8 /* Constants.swift */; };
+		CEDFF3E31DFC963B00A311C8 /* ClassExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */; };
+		CEDFF3E61DFC973F00A311C8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEDFF3E81DFC973F00A311C8 /* Localizable.strings */; };
+		CEE0F5E11E032B3B00F3991D /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */; };
 		CEED7B831DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
 		CEED7B841DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
 		CEED7B851DF744E3008B0AEC /* privateProperties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEED7B821DF744E2008B0AEC /* privateProperties.plist */; };
@@ -62,6 +68,15 @@
 		CE7AF2551DF742AF007F231F /* SampleProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SampleProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7AF2591DF742AF007F231F /* SampleProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProjectUITests.swift; sourceTree = "<group>"; };
 		CE7AF25B1DF742AF007F231F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		CE92D4801DFDDCF600C6F6AD /* SampleProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleProject.entitlements; sourceTree = "<group>"; };
+		CEDFF3DB1DFC933D00A311C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		CEDFF3DD1DFC93C500A311C8 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CEDFF3DF1DFC95C600A311C8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
+		CEDFF3E01DFC95C600A311C8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassExtension.swift; sourceTree = "<group>"; };
+		CEDFF3EA1DFC974400A311C8 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CEDFF3EB1DFC979600A311C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CEED7B821DF744E2008B0AEC /* privateProperties.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = privateProperties.plist; path = privateFiles/privateProperties.plist; sourceTree = SOURCE_ROOT; };
 		CEED7B891DF74B44008B0AEC /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CEED7B8B1DF74BA3008B0AEC /* CrateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrateAccountViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDFF3DC1DFC933D00A311C8 /* Security.framework in Frameworks */,
 				26295DF2458ED0B7B86B952E /* Pods_SampleProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +151,7 @@
 		CE7AF2381DF742AE007F231F /* SampleProject */ = {
 			isa = PBXGroup;
 			children = (
+				CE92D4801DFDDCF600C6F6AD /* SampleProject.entitlements */,
 				CEED7B871DF74B17008B0AEC /* ViewControllers */,
 				CEED7B881DF74B22008B0AEC /* UI */,
 				CEED7B861DF74B0B008B0AEC /* supportFiles */,
@@ -160,13 +177,25 @@
 			path = SampleProjectUITests;
 			sourceTree = "<group>";
 		};
+		CEDFF3E11DFC962200A311C8 /* utilitis */ = {
+			isa = PBXGroup;
+			children = (
+				CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */,
+				CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */,
+			);
+			name = utilitis;
+			sourceTree = "<group>";
+		};
 		CEED7B861DF74B0B008B0AEC /* supportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CEDFF3E11DFC962200A311C8 /* utilitis */,
 				CE7AF2391DF742AE007F231F /* AppDelegate.swift */,
 				CE7AF2401DF742AF007F231F /* Assets.xcassets */,
 				CE7AF2451DF742AF007F231F /* Info.plist */,
 				CEED7B821DF744E2008B0AEC /* privateProperties.plist */,
+				CEDFF3DD1DFC93C500A311C8 /* Constants.swift */,
+				CEDFF3E81DFC973F00A311C8 /* Localizable.strings */,
 			);
 			name = supportFiles;
 			sourceTree = "<group>";
@@ -193,6 +222,7 @@
 		FFF10E9FDD5F1FD906F9B1BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEDFF3DB1DFC933D00A311C8 /* Security.framework */,
 				2155B08F3E68096F870A01F6 /* Pods_SampleProject.framework */,
 				5C644D95C3CAA354D6C1C61F /* Pods_SampleProjectTests.framework */,
 				43A6F538EF57D5454814A446 /* Pods_SampleProjectUITests.framework */,
@@ -278,6 +308,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = J48WXZL2X4;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					CE7AF2491DF742AF007F231F = {
 						CreatedOnToolsVersion = 8.1;
@@ -298,6 +333,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = CE7AF22D1DF742AE007F231F;
 			productRefGroup = CE7AF2371DF742AE007F231F /* Products */;
@@ -316,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDFF3E61DFC973F00A311C8 /* Localizable.strings in Resources */,
 				CE7AF2441DF742AF007F231F /* LaunchScreen.storyboard in Resources */,
 				CEED7B831DF744E3008B0AEC /* privateProperties.plist in Resources */,
 				CE7AF2411DF742AF007F231F /* Assets.xcassets in Resources */,
@@ -469,10 +506,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDFF3DE1DFC93C500A311C8 /* Constants.swift in Sources */,
 				CEED7B8C1DF74BA3008B0AEC /* CrateAccountViewController.swift in Sources */,
+				CEDFF3E31DFC963B00A311C8 /* ClassExtension.swift in Sources */,
 				CEED7B8A1DF74B44008B0AEC /* LoginViewController.swift in Sources */,
 				CE7AF23C1DF742AE007F231F /* MainViewController.swift in Sources */,
 				CE7AF23A1DF742AE007F231F /* AppDelegate.swift in Sources */,
+				CE92D47F1DFDA8D800C6F6AD /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE7AF24F1DF742AF007F231F /* SampleProjectTests.swift in Sources */,
+				CEE0F5E11E032B3B00F3991D /* KeychainWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +553,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE7AF23E1DF742AE007F231F /* Base */,
+				CEDFF3DF1DFC95C600A311C8 /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -520,8 +562,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				CE7AF2431DF742AF007F231F /* Base */,
+				CEDFF3E01DFC95C600A311C8 /* pl */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		CEDFF3E81DFC973F00A311C8 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CEDFF3EA1DFC974400A311C8 /* pl */,
+				CEDFF3EB1DFC979600A311C8 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -531,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -545,6 +598,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -581,6 +635,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -595,6 +650,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -626,6 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SampleProject/SampleProject.entitlements;
 				DEVELOPMENT_TEAM = J48WXZL2X4;
 				INFOPLIST_FILE = SampleProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -641,6 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = SampleProject/SampleProject.entitlements;
 				DEVELOPMENT_TEAM = J48WXZL2X4;
 				INFOPLIST_FILE = SampleProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

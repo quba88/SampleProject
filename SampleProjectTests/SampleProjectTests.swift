@@ -21,16 +21,25 @@ class SampleProjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCreateAccount(){
+        XCTAssertTrue(try KeychainWrapper.createAccount(login: "123321", password: "123"))
+        XCTAssertThrowsError(try KeychainWrapper.createAccount(login: "123321", password: "123"))
+        XCTAssertThrowsError(try KeychainWrapper.createAccount(login: "", password: "123"))
+        XCTAssertThrowsError(try KeychainWrapper.createAccount(login: "123321", password: ""))
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testDeleteAccount()  {
+        XCTAssertTrue(try KeychainWrapper.deleteAccount(login: "123321"))
+        XCTAssertThrowsError(try KeychainWrapper.deleteAccount(login: "123321"))
+    }
+    
+    func testValidateUserAccess() {
+        
+        XCTAssertTrue(try KeychainWrapper.validateUserAccess(login: "123", password: "123"))
+        XCTAssertFalse(try KeychainWrapper.validateUserAccess(login: "123", password: "12dd3"))
+        XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "", password: "4564"))
+        XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "212132", password: ""))
+        XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "aaaaaaaaaa", password: "4564"))
     }
     
 }
