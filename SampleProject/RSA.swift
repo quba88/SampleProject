@@ -8,10 +8,22 @@
 
 import Foundation
 
-class RSA{
+private extension Character
+{
+    func unicodeScalarCodePoint() -> UInt32
+    {
+        let characterString = String(self)
+        let scalars = characterString.unicodeScalars
+        
+        return scalars[scalars.startIndex].value
+    }
+}
 
-    private var firstPrimeNumber:UInt = 0
-    private var secondPrimeNumber:UInt = 0
+
+class RSA{
+    
+    private var publicKey:(UInt, UInt) = (0, 0)
+    private var privateKey:(UInt, UInt) = (0, 0)
     
   // MARK: - prime number generator
     private func randomFromRange(range: Range<Int> ) -> UInt
@@ -47,12 +59,165 @@ class RSA{
         return isPrime}
     
     
-    private func generatePrimeNumber(){
+    private func generatePrimeNumber() -> UInt{
         var isPrime = false
         var number:UInt = 0
         
         while !isPrime {
             number = randomFromRange(range: Range(uncheckedBounds: (900000000, 1000910000)))
-            isPrime = checkIsPrime(number)}
+            isPrime = checkIsPrime(number)
+        }
+   
+    return number
     }
+    
+    // MARK: - Coprime integers
+    
+    private func findGreatestCommonDivisor(a:UInt, b:UInt)->UInt{
+    
+        var tmpValue:UInt = 0
+        var bTmp = b
+        var aTmp = a
+
+        while bTmp != 0 {
+            
+            tmpValue = bTmp
+            bTmp = aTmp % bTmp
+            aTmp = tmpValue
+        }
+        
+    return aTmp}
+    
+    
+ private func modularMultiplicativeInverse(a:UInt, n:UInt) ->UInt{
+        
+        // helper varble
+        var a0:Int64 = 0
+        var n0:Int64 = 0
+        var p0:Int64 = 0
+        var p1:Int64 = 0
+        var q:Int64 = 0
+        var r:Int64 = 0
+        var t:Int64 = 0
+        
+        p1 = 1
+        a0 = Int64(a)
+        n0 = Int64(n)
+        
+        q  = n0 / a0;
+        r  = n0 % a0;
+        while(r > 0)
+        {
+            t = p0 - q * p1
+            if(t >= 0){
+                t = t % Int64(n)}
+            else{
+                t = Int64(n) - ((-t) % Int64(n))}
+            p0 = p1
+            p1 = t
+            n0 = a0
+            a0 = r
+            q  = n0 / a0
+            r  = n0 % a0
+        }
+        return UInt(p1);
+}
+    
+    // MARK: - RSA algorithm
+  func generateKeys(){
+        let pNumber:UInt = 13 // generatePrimeNumber()
+        let qNumber:UInt = 11 // generatePrimeNumber()
+    
+        let eulerFunction = (pNumber - 1) * (qNumber - 1)
+        let nNumber = pNumber * qNumber
+        
+        var eNumber:UInt = 3 // public key
+        var dNumber:UInt = 0 // private key
+        
+        dNumber = modularMultiplicativeInverse(a:eNumber, n: eulerFunction) // generate max value
+        
+        while findGreatestCommonDivisor(a: eNumber, b: eulerFunction) != 1 //|| eNumber < 50
+        {
+            eNumber += 2
+            dNumber = modularMultiplicativeInverse(a:eNumber, n: eulerFunction)
+        }
+        
+    self.publicKey = (eNumber, nNumber)
+    self.privateKey = (dNumber, nNumber)
+    }
+    
+    
+    public func encrypt(valueToEncrypt:String)->String{
+        
+        guard valueToEncrypt.characters.count != 0 else {return "";}
+        
+        
+        let charValue = valueToEncrypt.characters.first!.unicodeScalarCodePoint()
+        
+        var encriptedValue:String = "\(UInt(pow(Double(charValue), Double(self.publicKey.0))) % self.publicKey.1)" // encrypted value
+        
+        if encriptedValue.characters.count < 8 {
+            encriptedValue = String(repeating: "0", count:  (8 - encriptedValue.characters.count)).appending(encriptedValue) // set value to contain 8 char
+        }
+        
+        return encriptedValue}
+    
+    public func decrypt(valueToDecrypt:String) -> String {
+        guard valueToDecrypt.characters.count != 0 else {return "";}
+
+        let intValue = UInt(valueToDecrypt)!
+
+        // calculate modulo of big power
+        
+        var maxValue = self.privateKey.0
+        
+
+        var arrayOfExponents = [UInt]() // array with exponents used to calculate modulo
+        var currentExponent:UInt = 0
+        
+        while maxValue != 0 {
+            
+            if(maxValue < currentExponent){
+                currentExponent >>= 1
+                arrayOfExponents.append(currentExponent)
+                maxValue -= currentExponent
+                currentExponent = 0
+            }
+            
+            if(currentExponent == 0){
+                currentExponent = 1}
+            else{
+                currentExponent <<= 1}
+        }
+        
+        var lastModValue = intValue % self.privateKey.1
+        
+        if(arrayOfExponents.contains(1)){
+        arrayOfExponents[arrayOfExponents.index(of: 1)!] = lastModValue
+        }
+        
+        currentExponent <<= 1
+        while currentExponent <= arrayOfExponents.max()!
+        {
+            lastModValue = UInt(pow(Double(lastModValue), 2.0)) % self.privateKey.1
+            
+            if(arrayOfExponents.contains(currentExponent)){
+                arrayOfExponents[arrayOfExponents.index(of: currentExponent)!] = lastModValue
+            }
+            
+            currentExponent <<= 1
+        }
+        var decript:UInt = 1
+        
+        for element in arrayOfExponents {
+            decript *= element % self.privateKey.1
+        }
+        
+        decript = decript % self.privateKey.1
+        
+        
+        
+    
+    return "\(decript)"}
+    
 }
