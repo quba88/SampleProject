@@ -64,7 +64,7 @@ class RSA{
         var number:UInt = 0
         
         while !isPrime {
-            number = randomFromRange(range: Range(uncheckedBounds: (900000000, 1000910000)))
+            number = randomFromRange(range: Range(uncheckedBounds: (255, 400)))
             isPrime = checkIsPrime(number)
         }
    
@@ -125,8 +125,8 @@ class RSA{
     
     // MARK: - RSA algorithm
   func generateKeys(){
-        let pNumber:UInt = 13 // generatePrimeNumber()
-        let qNumber:UInt = 11 // generatePrimeNumber()
+        let pNumber:UInt = generatePrimeNumber()
+        let qNumber:UInt = generatePrimeNumber()
     
         let eulerFunction = (pNumber - 1) * (qNumber - 1)
         let nNumber = pNumber * qNumber
@@ -177,7 +177,7 @@ class RSA{
         
         while maxValue != 0 {
             
-            if(maxValue < currentExponent){
+            if maxValue < currentExponent {
                 currentExponent >>= 1
                 arrayOfExponents.append(currentExponent)
                 maxValue -= currentExponent
@@ -210,14 +210,11 @@ class RSA{
         var decript:UInt = 1
         
         for element in arrayOfExponents {
-            decript *= element % self.privateKey.1
+            decript = (decript * element) % self.privateKey.1
         }
         
-        decript = decript % self.privateKey.1
         
         
-        
-    
-    return "\(decript)"}
+    return "\(Character(UnicodeScalar(UInt8(decript))))"}
     
 }
