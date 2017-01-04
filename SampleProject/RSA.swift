@@ -216,5 +216,33 @@ class RSA{
         
         
     return "\(Character(UnicodeScalar(UInt8(decript))))"}
-    
+
+
+    public func encryptValue(value:String) -> String {
+        guard value.characters.count != 0 else {return ""}
+        var valueEncripted = ""
+        
+        
+        for singleChar in value.characters {
+          valueEncripted.append(self.encrypt(valueToEncrypt: String(singleChar)))
+        }
+        
+    return valueEncripted}
+
+    public func decryptValue(value:String) -> String {
+        guard value.characters.count != 0 else {return ""}
+        guard (value.characters.count % 8) == 0 else {return ""}
+
+        let numberOfSteps = value.characters.count / 8
+        var valueDecrypt = ""
+
+        for step in 0..<numberOfSteps{
+            
+            let startIndex = value.index(value.startIndex, offsetBy: step*8)
+            let endIndex = value.index(startIndex, offsetBy: 7)
+            valueDecrypt.append(self.decrypt(valueToDecrypt: value[startIndex...endIndex]))
+        }
+ 
+        return valueDecrypt}
+
 }
