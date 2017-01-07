@@ -46,10 +46,9 @@ class RSA{
         if number == 1 {
             isPrime = false
         }
-        let stopNumber = UInt(sqrt(Double(number)))
         
         var i:UInt = 2
-        while i < stopNumber {
+        while i < number {
             if number % i == 0 {
                 isPrime = false
                 break
@@ -59,12 +58,12 @@ class RSA{
         return isPrime}
     
     
-    private func generatePrimeNumber() -> UInt{
+    private func generatePrimeNumber() -> UInt{ //TODO: improve prime number generator
         var isPrime = false
         var number:UInt = 0
         
         while !isPrime {
-            number = randomFromRange(range: Range(uncheckedBounds: (255, 400)))
+            number = randomFromRange(range: Range(uncheckedBounds: (260, 400)))
             isPrime = checkIsPrime(number)
         }
    
@@ -128,9 +127,9 @@ class RSA{
         let pNumber:UInt = generatePrimeNumber()
         let qNumber:UInt = generatePrimeNumber()
     
-        let eulerFunction = (pNumber - 1) * (qNumber - 1)
-        let nNumber = pNumber * qNumber
-        
+    let eulerFunction = (pNumber - 1) * (qNumber - 1)
+    let nNumber = pNumber * qNumber
+    
         var eNumber:UInt = 3 // public key
         var dNumber:UInt = 0 // private key
         
@@ -151,10 +150,11 @@ class RSA{
         
         guard valueToEncrypt.characters.count != 0 else {return "";}
         
+        let charValue = UInt(valueToEncrypt.characters.first!.unicodeScalarCodePoint())
+
+        let encr = UInt(pow(Double(charValue), Double(self.publicKey.0))) % self.publicKey.1
+        var encriptedValue:String = "\(encr)"// encrypted value
         
-        let charValue = valueToEncrypt.characters.first!.unicodeScalarCodePoint()
-        
-        var encriptedValue:String = "\(UInt(pow(Double(charValue), Double(self.publicKey.0))) % self.publicKey.1)" // encrypted value
         
         if encriptedValue.characters.count < 8 {
             encriptedValue = String(repeating: "0", count:  (8 - encriptedValue.characters.count)).appending(encriptedValue) // set value to contain 8 char
@@ -167,13 +167,19 @@ class RSA{
 
         let intValue = UInt(valueToDecrypt)!
 
-        // calculate modulo of big power
+        let decript = self.moduloOfBigPower(number: intValue, power: self.privateKey.0, modulo: self.privateKey.1)
         
-        var maxValue = self.privateKey.0
+        guard let charValue = UnicodeScalar(UInt32(decript)) else {return ""}
         
+        
+    return "\(Character(charValue))"}
+
+    
+    private  func moduloOfBigPower(number:UInt, power:UInt, modulo:UInt) -> UInt { // calculate modulo of big power
 
         var arrayOfExponents = [UInt]() // array with exponents used to calculate modulo
         var currentExponent:UInt = 0
+        var maxValue = power
         
         while maxValue != 0 {
             
@@ -190,16 +196,16 @@ class RSA{
                 currentExponent <<= 1}
         }
         
-        var lastModValue = intValue % self.privateKey.1
+        var lastModValue = number % modulo
         
         if(arrayOfExponents.contains(1)){
-        arrayOfExponents[arrayOfExponents.index(of: 1)!] = lastModValue
+            arrayOfExponents[arrayOfExponents.index(of: 1)!] = lastModValue
         }
         
         currentExponent <<= 1
         while currentExponent <= arrayOfExponents.max()!
         {
-            lastModValue = UInt(pow(Double(lastModValue), 2.0)) % self.privateKey.1
+            lastModValue = UInt(pow(Double(lastModValue), 2.0)) % modulo
             
             if(arrayOfExponents.contains(currentExponent)){
                 arrayOfExponents[arrayOfExponents.index(of: currentExponent)!] = lastModValue
@@ -207,17 +213,20 @@ class RSA{
             
             currentExponent <<= 1
         }
-        var decript:UInt = 1
         
+        
+        
+        var result:UInt = 1
         for element in arrayOfExponents {
-            decript = (decript * element) % self.privateKey.1
+            result = (result * element) % modulo
         }
         
-        
-        
-    return "\(Character(UnicodeScalar(UInt8(decript))))"}
-
-
+        result %= modulo
+        return result}
+    
+    
+// MARK: - public interface
+    
     public func encryptValue(value:String) -> String {
         guard value.characters.count != 0 else {return ""}
         var valueEncripted = ""
@@ -229,6 +238,10 @@ class RSA{
         
     return valueEncripted}
 
+    
+    
+    
+    
     public func decryptValue(value:String) -> String {
         guard value.characters.count != 0 else {return ""}
         guard (value.characters.count % 8) == 0 else {return ""}

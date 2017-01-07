@@ -60,14 +60,14 @@ class SampleProjectTests: XCTestCase {
     }
     
     func testEncryptTextText(){
-        let text = "a c"
+        let text = "k z a"
         let textToDecrypt = self.rsaTest.encryptValue(value: text)
         
         XCTAssertFalse(textToDecrypt == text)
         
         let textToEncripted = self.rsaTest.decryptValue(value: textToDecrypt)
 
-        XCTAssertTrue(textToEncripted == text)
+        XCTAssertTrue(textToEncripted == text, "not equail \(text) == \(textToEncripted)")
 
     }
     
