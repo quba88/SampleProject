@@ -5,4 +5,4 @@ xcode_scheme: SampleProjectTest
 xcode_sdk: iphonesimulator10.1
 
 script:
-- xcodebuild clean build test -project SampleProject.xcodeproj -schema SampleProjectTest
+- xcodebuild clean build test -project SampleProject.xcodeproj -scheme SampleProjectTest
