@@ -1,7 +1,7 @@
 language: objective-c
 
 script:
-  - xcodebuild [DEFAULT_OPTIONS] CODE_SIGNING_REQUIRED=NO
+  - xcodebuild CODE_SIGNING_REQUIRED=NO
 
 osx_image: xcode8.1
 xcode_workspace: SampleProject.xcworkspace
