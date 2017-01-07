@@ -1,7 +1,7 @@
 language: objective-c
 
 script:
-  - xcodebuild CODE_SIGNING_REQUIRED=NO
+  - xctool -sdk iphonesimulator -workspace SampleProject.xcworkspace -scheme SampleProject build test
 
 osx_image: xcode8.1
 xcode_workspace: SampleProject.xcworkspace
