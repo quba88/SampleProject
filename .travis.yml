@@ -1,8 +1,8 @@
 language: objective-c
 osx_image: xcode8.1
 xcode_workspace: SampleProject.xcworkspace
-xcode_scheme: SampleProjectTest
+xcode_scheme: SampleProject
 xcode_sdk: iphonesimulator10.1
 
 script:
-- xcodebuild clean build test -project SampleProject.xcodeproj -scheme SampleProjectTest
+- xcodebuild clean build test -project SampleProject.xcodeproj -scheme SampleProject
