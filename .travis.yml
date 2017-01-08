@@ -1,8 +1,5 @@
 language: objective-c
 
-script:
-  - xctool -sdk iphonesimulator -workspace SampleProject.xcworkspace -scheme SampleProject build test
-
 osx_image: xcode8.1
 xcode_workspace: SampleProject.xcworkspace
 xcode_scheme: SampleProject
