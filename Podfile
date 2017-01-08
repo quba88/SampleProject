@@ -9,11 +9,15 @@ target 'SampleProject' do
 
   target 'SampleProjectTests' do
     inherit! :search_paths
+    use_frameworks!
+
     # Pods for testing
   end
 
   target 'SampleProjectUITests' do
     inherit! :search_paths
+    use_frameworks!
+
     # Pods for testing
   end
 
