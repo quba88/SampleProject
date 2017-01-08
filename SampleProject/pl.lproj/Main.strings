@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Password Repeat:"; ObjectID = "9f6-FJ-u7p"; */
+"9f6-FJ-u7p.text" = "Powtórz Hasło:";
+
+/* Class = "UILabel"; text = "Login: "; ObjectID = "Dc0-IC-bwY"; */
+"Dc0-IC-bwY.text" = "Login: ";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "Jhx-rX-CBs"; */
+"Jhx-rX-CBs.text" = "Hasło:";
+
+/* Class = "UIButton"; normalTitle = "Create account"; ObjectID = "MBF-Bf-yFl"; */
+"MBF-Bf-yFl.normalTitle" = "Utwórz konto";
+
+/* Class = "UILabel"; text = "Password:"; ObjectID = "NWq-Gv-i8d"; */
+"NWq-Gv-i8d.text" = "Hasło:";
+
+/* Class = "UIButton"; normalTitle = "Log in to app"; ObjectID = "PpG-Zw-Dbm"; */
+"PpG-Zw-Dbm.normalTitle" = "Zaloguj się do aplikacji";
+
+/* Class = "UILabel"; text = "Login: "; ObjectID = "Woo-BH-4cr"; */
+"Woo-BH-4cr.text" = "Login: ";
+
+/* Class = "UIButton"; normalTitle = "Subbmit"; ObjectID = "gd2-ea-5da"; */
+"gd2-ea-5da.normalTitle" = "Zatwierdź";
