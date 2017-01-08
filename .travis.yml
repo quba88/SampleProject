@@ -3,7 +3,7 @@ language: objective-c
 osx_image: xcode8.1
 xcode_workspace: SampleProject.xcworkspace
 xcode_scheme: SampleProject
-xcode_sdk: iphonesimulator9.3
+xcode_sdk: iphonesimulator10.1
 
 script:
-- xcodebuild clean -project SampleProject.xcodeproj -scheme SampleProject -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=10.0,name=iPhone 6' build test | xcpretty -c --test --color
+- xcodebuild clean -project SampleProject.xcodeproj -scheme SampleProject -sdk iphonesimulator -destination 'platform=iOS Simulator,id=3B5E817B-744D-4086-AAB0-55CB35A17717,OS=10.1,name=iPhone 6' build test | xcpretty -c --test --color
