@@ -6,4 +6,4 @@ xcode_scheme: SampleProject
 xcode_sdk: iphonesimulator9.3
 
 script:
-- xcodebuild clean build test -project SampleProject.xcodeproj -scheme SampleProject
+- xcodebuild clean -project SampleProject.xcodeproj -scheme SampleProject -sdk iphonesimulator -destination 'platform=iOS Simulator,OS=10.0,name=iPhone 6' build test | xcpretty -c --test --color
