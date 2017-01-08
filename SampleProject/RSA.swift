@@ -135,7 +135,7 @@ class RSA{
         
         dNumber = modularMultiplicativeInverse(a:eNumber, n: eulerFunction) // generate max value
         
-        while findGreatestCommonDivisor(a: eNumber, b: eulerFunction) != 1 //|| eNumber < 50
+        while findGreatestCommonDivisor(a: eNumber, b: eulerFunction) != 1
         {
             eNumber += 2
             dNumber = modularMultiplicativeInverse(a:eNumber, n: eulerFunction)
@@ -146,13 +146,22 @@ class RSA{
     }
     
     
-    public func encrypt(valueToEncrypt:String)->String{
+    private func encrypt(valueToEncrypt:String)->String{
         
         guard valueToEncrypt.characters.count != 0 else {return "";}
         
         let charValue = UInt(valueToEncrypt.characters.first!.unicodeScalarCodePoint())
 
-        let encr = UInt(pow(Double(charValue), Double(self.publicKey.0))) % self.publicKey.1
+        
+        var encr:UInt = 0
+            
+        if charValue > UInt(" ".characters.first!.unicodeScalarCodePoint()){
+            encr = self.moduloOfBigPower(number: charValue, power: self.publicKey.0, modulo: self.publicKey.1)
+            
+        }else{
+            encr = UInt(pow(Double(charValue), Double(self.publicKey.0))) % self.publicKey.1
+        }
+        
         var encriptedValue:String = "\(encr)"// encrypted value
         
         
@@ -162,7 +171,7 @@ class RSA{
         
         return encriptedValue}
     
-    public func decrypt(valueToDecrypt:String) -> String {
+    private func decrypt(valueToDecrypt:String) -> String {
         guard valueToDecrypt.characters.count != 0 else {return "";}
 
         let intValue = UInt(valueToDecrypt)!
@@ -237,9 +246,6 @@ class RSA{
         }
         
     return valueEncripted}
-
-    
-    
     
     
     public func decryptValue(value:String) -> String {

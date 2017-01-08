@@ -45,29 +45,15 @@ class SampleProjectTests: XCTestCase {
         XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "aaaaaaaaaa", password: "4564"))
     }
     
-    
-    func testRSAOneChar(){
-    
-        let valueToCode = "|"
-        let encriptedValue = self.rsaTest.encrypt(valueToEncrypt: valueToCode)
-        
-        XCTAssertFalse(encriptedValue == valueToCode)
-        
-        let decriptedValue = self.rsaTest.decrypt(valueToDecrypt: encriptedValue);
-        
-        
-        XCTAssertTrue(decriptedValue == valueToCode)
-    }
-    
     func testEncryptTextText(){
-        let text = "k z a"
+        let text = "Lw 35_643+1234?"
         let textToDecrypt = self.rsaTest.encryptValue(value: text)
         
         XCTAssertFalse(textToDecrypt == text)
         
-        let textToEncripted = self.rsaTest.decryptValue(value: textToDecrypt)
-
-        XCTAssertTrue(textToEncripted == text, "not equail \(text) == \(textToEncripted)")
+        let textEncripted = self.rsaTest.decryptValue(value: textToDecrypt)
+        print(textToDecrypt)
+        XCTAssertTrue(textEncripted == text, "not equail \(text) == \(textEncripted)")
 
     }
     
