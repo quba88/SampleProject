@@ -10,6 +10,9 @@
 		26295DF2458ED0B7B86B952E /* Pods_SampleProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2155B08F3E68096F870A01F6 /* Pods_SampleProject.framework */; };
 		3FEB715B4B2B3A445F5D4E10 /* Pods_SampleProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C644D95C3CAA354D6C1C61F /* Pods_SampleProjectTests.framework */; };
 		8418C583FA68719F15678D79 /* Pods_SampleProjectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43A6F538EF57D5454814A446 /* Pods_SampleProjectUITests.framework */; };
+		CE10BD441E05ACE500031F69 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10BD431E05ACE500031F69 /* RSA.swift */; };
+		CE10BD451E05ACE900031F69 /* RSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE10BD431E05ACE500031F69 /* RSA.swift */; };
+		CE120BC31E2278A500B75F8A /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = CE120BC21E2278A500B75F8A /* Podfile */; };
 		CE7AF23A1DF742AE007F231F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF2391DF742AE007F231F /* AppDelegate.swift */; };
 		CE7AF23C1DF742AE007F231F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7AF23B1DF742AE007F231F /* MainViewController.swift */; };
 		CE7AF23F1DF742AE007F231F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE7AF23D1DF742AE007F231F /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		49B6AB1558EC0E6FB2E818D1 /* Pods-SampleProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProjectTests/Pods-SampleProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C644D95C3CAA354D6C1C61F /* Pods_SampleProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SampleProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B787FA87DE1142A4023F48F7 /* Pods-SampleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SampleProject/Pods-SampleProject.debug.xcconfig"; sourceTree = "<group>"; };
+		CE10BD431E05ACE500031F69 /* RSA.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSA.swift; sourceTree = "<group>"; };
+		CE120BAF1E2234C500B75F8A /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
+		CE120BC21E2278A500B75F8A /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		CE2108201E048F5C000A8AB4 /* SampleProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SampleProject.entitlements; sourceTree = "<group>"; };
 		CE7AF2361DF742AE007F231F /* SampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE7AF2391DF742AE007F231F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +135,7 @@
 		CE7AF22D1DF742AE007F231F = {
 			isa = PBXGroup;
 			children = (
+				CE120BAF1E2234C500B75F8A /* .travis.yml */,
 				CE7AF2381DF742AE007F231F /* SampleProject */,
 				CE7AF24D1DF742AF007F231F /* SampleProjectTests */,
 				CE7AF2581DF742AF007F231F /* SampleProjectUITests */,
@@ -182,6 +189,7 @@
 			children = (
 				CEDFF3E21DFC963B00A311C8 /* ClassExtension.swift */,
 				CE92D47E1DFDA8D800C6F6AD /* KeychainWrapper.swift */,
+				CE10BD431E05ACE500031F69 /* RSA.swift */,
 			);
 			name = utilitis;
 			sourceTree = "<group>";
@@ -189,6 +197,7 @@
 		CEED7B861DF74B0B008B0AEC /* supportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				CE120BC21E2278A500B75F8A /* Podfile */,
 				CEDFF3E11DFC962200A311C8 /* utilitis */,
 				CE7AF2391DF742AE007F231F /* AppDelegate.swift */,
 				CE7AF2401DF742AF007F231F /* Assets.xcassets */,
@@ -352,6 +361,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE120BC31E2278A500B75F8A /* Podfile in Resources */,
 				CEDFF3E61DFC973F00A311C8 /* Localizable.strings in Resources */,
 				CE7AF2441DF742AF007F231F /* LaunchScreen.storyboard in Resources */,
 				CEED7B831DF744E3008B0AEC /* privateProperties.plist in Resources */,
@@ -508,6 +518,7 @@
 			files = (
 				CEDFF3DE1DFC93C500A311C8 /* Constants.swift in Sources */,
 				CEED7B8C1DF74BA3008B0AEC /* CrateAccountViewController.swift in Sources */,
+				CE10BD441E05ACE500031F69 /* RSA.swift in Sources */,
 				CEDFF3E31DFC963B00A311C8 /* ClassExtension.swift in Sources */,
 				CEED7B8A1DF74B44008B0AEC /* LoginViewController.swift in Sources */,
 				CE7AF23C1DF742AE007F231F /* MainViewController.swift in Sources */,
@@ -522,6 +533,7 @@
 			files = (
 				CE7AF24F1DF742AF007F231F /* SampleProjectTests.swift in Sources */,
 				CEE0F5E11E032B3B00F3991D /* KeychainWrapper.swift in Sources */,
+				CE10BD451E05ACE900031F69 /* RSA.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

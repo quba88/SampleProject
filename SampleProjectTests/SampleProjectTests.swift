@@ -10,9 +10,12 @@ import XCTest
 @testable import SampleProject
 
 class SampleProjectTests: XCTestCase {
+    let rsaTest = RSA()
     
     override func setUp() {
         super.setUp()
+        self.rsaTest.generateKeys()
+
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -40,6 +43,18 @@ class SampleProjectTests: XCTestCase {
         XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "", password: "4564"))
         XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "212132", password: ""))
         XCTAssertThrowsError(try KeychainWrapper.validateUserAccess(login: "aaaaaaaaaa", password: "4564"))
+    }
+    
+    func testEncryptTextText(){
+        let text = "Lw 35_643+1234?"
+        let textToDecrypt = self.rsaTest.encryptValue(value: text)
+        
+        XCTAssertFalse(textToDecrypt == text)
+        
+        let textEncripted = self.rsaTest.decryptValue(value: textToDecrypt)
+        print(textToDecrypt)
+        XCTAssertTrue(textEncripted == text, "not equail \(text) == \(textEncripted)")
+
     }
     
 }
