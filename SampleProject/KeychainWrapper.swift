@@ -169,18 +169,68 @@ class KeychainWrapper{
     
     
     
-    class func storageRSAKeys(publicKey:(UInt, UInt), privateKey:(UInt, UInt), forUser login:String) ->Bool{
+    class func storageRSAKeys(publicKey:(UInt, UInt), privateKey:(UInt, UInt), forUser login:String) throws ->Bool{
         
-        var keychainItem = KeychainWrapper.createKeychainItem(login: login)
+        var keychainItem = KeychainWrapper.createKeychainItem(login: "\(login)_rsaKeys")
         var status = SecItemCopyMatching(keychainItem as CFDictionary, nil)
         
         if status == noErr{ //accout exist storage keys
             let rsaKeyMapper = RSAKeyMapper(publicKey: publicKey, privateKey: privateKey)
             let data = NSKeyedArchiver.archivedData(withRootObject: rsaKeyMapper)
+            keychainItem[kSecValueData as String] = data
+            status = SecItemAdd(keychainItem as CFDictionary, nil)
+            
+            if status != errSecSuccess{
+                throw KeychainWrapperError.save("Save Error status code: \(status)")
+            }
+            
+            return true
         }
         else{
+            throw KeychainWrapperError.exist
+
             return false;
         }
+    }
+    
+    
+    class func getRSAPublicKey(forUser login:String) throws -> (UInt, UInt){
+    
+        let keychainItem = KeychainWrapper.createKeychainItem(login: "\(login)_rsaKeys")
+        var result:CFTypeRef?
+        let status = SecItemCopyMatching(keychainItem as CFDictionary, &result)
         
-        return true}
+        guard let keychainDic = result as? [String:Any] else{
+            throw KeychainWrapperError.fetch("get user data error statusCode \(status)")
+        }
+        
+        let rsaKeyMapperData = keychainDic[kSecValueData as String] as! Data
+
+        let optionalKeyMapper = NSKeyedUnarchiver.unarchiveObject(with: rsaKeyMapperData) as? RSAKeyMapper
+        
+        
+        guard let keyMapper = optionalKeyMapper else {return (0,0)}
+    
+    return keyMapper.publicKey}
+    
+    
+   internal class func getRSAPrivateKey(forUser login:String) throws -> (UInt, UInt){
+        
+        let keychainItem = KeychainWrapper.createKeychainItem(login: "\(login)_rsaKeys")
+        var result:CFTypeRef?
+        let status = SecItemCopyMatching(keychainItem as CFDictionary, &result)
+        
+        guard let keychainDic = result as? [String:Any] else{
+            throw KeychainWrapperError.fetch("get user data error statusCode \(status)")
+        }
+        
+        let rsaKeyMapperData = keychainDic[kSecValueData as String] as! Data
+        
+        let optionalKeyMapper = NSKeyedUnarchiver.unarchiveObject(with: rsaKeyMapperData) as? RSAKeyMapper
+        
+        
+        guard let keyMapper = optionalKeyMapper else {return (0,0)}
+        
+        return keyMapper.privateKey}
+    
 }
