@@ -21,7 +21,7 @@ enum KeychainWrapperError:Error {
 }
 
 
-fileprivate class RSAKeyMapper:NSCoding{
+fileprivate class RSAKeyMapper:NSObject, NSCoding{
     
     private(set)  var publicKey:(UInt, UInt) = (0,0)
     private(set)  var privateKey:(UInt, UInt) = (0,0)
@@ -59,7 +59,7 @@ fileprivate class RSAKeyMapper:NSCoding{
         
     }
     
-    fileprivate func encode(with aCoder: NSCoder){
+     func encode(with aCoder: NSCoder){
         aCoder.encode(self.publicKey.0, forKey: "storeValueOfPublicKey0")
         aCoder.encode(self.publicKey.1, forKey: "storeValueOfPublicKey1")
         
@@ -188,9 +188,8 @@ class KeychainWrapper{
         }
         else{
             throw KeychainWrapperError.exist
-
-            return false;
         }
+        
     }
     
     
