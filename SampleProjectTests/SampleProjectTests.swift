@@ -56,5 +56,4 @@ class SampleProjectTests: XCTestCase {
         XCTAssertTrue(textEncripted == text, "not equail \(text) == \(textEncripted)")
 
     }
-    
 }
