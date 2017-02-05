@@ -223,8 +223,6 @@ class RSA{
             currentExponent <<= 1
         }
         
-        
-        
         var result:UInt = 1
         for element in arrayOfExponents {
             result = (result * element) % modulo
